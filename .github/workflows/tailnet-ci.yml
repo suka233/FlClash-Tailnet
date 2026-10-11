@@ -40,11 +40,14 @@ jobs:
         with:
           packages: platform-tools
       - run: sdkmanager 'platforms;android-37.0' 'ndk;28.2.13676358'
+      - name: Pin Flutter native assets NDK
+        run: echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/28.2.13676358" >> "$GITHUB_ENV"
       - uses: gradle/actions/setup-gradle@v6
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: plugins/rust_api/rust
+          cache-on-failure: true
       - run: flutter pub get
       - run: dart format --output=none --set-exit-if-changed lib test tool plugins setup.dart
       - run: flutter analyze --no-fatal-infos
