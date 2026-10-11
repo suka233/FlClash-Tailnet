@@ -358,7 +358,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "disclaimerAcceptTitle": MessageLookupByLibrary.simpleMessage("接受声明"),
     "disclaimerAnalyticsContent": MessageLookupByLibrary.simpleMessage(
-      "随 Firebase 自动收集基础的应用使用统计。\n\n收集内容：首次启动、应用打开与会话时长、应用更新等基础事件，应用实例标识，设备型号、系统版本、系统语言，以及由 IP 地址推断的国家或地区级大致位置。\n\n用途：仅用于了解活跃设备数、版本分布与系统兼容情况。开发者不会将这些数据用于广告，不会出售，也不会与你的订阅或配置相关联。",
+      "本原型未配置 Firebase 上报，不会上传 Firebase 使用统计。",
     ),
     "disclaimerAnalyticsTitle": MessageLookupByLibrary.simpleMessage(
       "Firebase Analytics（使用统计）",
@@ -369,13 +369,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "disclaimerChangesTitle": MessageLookupByLibrary.simpleMessage("声明变更"),
     "disclaimerCrashlyticsContent": MessageLookupByLibrary.simpleMessage(
-      "应用发生崩溃时，自动上传崩溃报告。\n\n收集内容：崩溃堆栈与错误信息、崩溃发生时间、应用版本与构建号、设备品牌与型号、Android 系统版本、屏幕方向、剩余内存与存储空间、设备是否已 root，以及一个随安装生成、重装后即重置的随机安装标识。\n\n用途：仅用于定位和修复崩溃问题。\n\n你可以在“工具 > 常规 > 崩溃分析”中随时关闭。",
+      "本原型未配置 Firebase 上报，不会上传 Crashlytics 崩溃报告。",
     ),
     "disclaimerCrashlyticsTitle": MessageLookupByLibrary.simpleMessage(
       "Firebase Crashlytics（崩溃分析）",
     ),
     "disclaimerDataProcessingContent": MessageLookupByLibrary.simpleMessage(
-      "上述数据由 Google 代为处理和存储，可能被传输至你所在国家或地区以外（如美国）的服务器，并受 Google 隐私政策与 Firebase 隐私和安全说明约束。崩溃报告最多保留 90 天，统计数据按 Firebase 的默认策略保留。",
+      "设备和网络元数据的处理方式，请参阅你选择的 Tailscale 或 Headscale 控制服务器的隐私说明。",
     ),
     "disclaimerDesc": MessageLookupByLibrary.simpleMessage(
       "在使用 FlClash（以下简称“本软件”）前，请仔细阅读并充分理解本声明的全部内容。点击“同意”即表示你已阅读、理解并接受以下全部条款；如不同意，请点击“退出”并停止使用本软件。",
@@ -395,7 +395,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "disclaimerLicenseTitle": MessageLookupByLibrary.simpleMessage("开源协议"),
     "disclaimerPrivacyContent": MessageLookupByLibrary.simpleMessage(
-      "本软件不会收集或上传你的订阅地址、节点信息、配置内容、访问的网站、连接记录、流量内容和日志，这些数据仅保存在你的设备本地，开发者无法获取。\n\n本软件只会在你使用相应功能时访问外部网络，例如更新订阅时访问你提供的订阅地址、检查更新时访问 GitHub。\n\n桌面版（Windows、macOS、Linux）未集成任何数据统计或崩溃上报服务。Android 版集成了 Google Firebase 的以下两项服务，用于改进应用稳定性：",
+      "本原型未配置 Firebase 上报。启用 Tailscale 后，会连接你选择的控制服务器和中继服务器，并向控制服务器提供设备身份及网络元数据。Taildrop 文件通过 Tailscale 传输；节点状态和收件箱保存在手机的应用私有目录中。",
     ),
     "disclaimerPrivacyTitle": MessageLookupByLibrary.simpleMessage("数据收集与隐私"),
     "disclaimerResponsibilityContent": MessageLookupByLibrary.simpleMessage(

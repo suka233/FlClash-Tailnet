@@ -395,7 +395,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "disclaimerAcceptTitle": MessageLookupByLibrary.simpleMessage("声明への同意"),
     "disclaimerAnalyticsContent": MessageLookupByLibrary.simpleMessage(
-      "Firebase により基本的なアプリ利用統計が自動的に収集されます。\n\n収集内容：初回起動、アプリの起動とセッション時間、アプリの更新などの基本イベント、アプリインスタンス ID、端末のモデル、OS のバージョン、システム言語、および IP アドレスから推定される国または地域レベルのおおよその位置情報。\n\n目的：アクティブな端末数、バージョン分布、OS の互換性を把握するためにのみ使用します。開発者はこれらのデータを広告に使用したり、販売したり、サブスクリプションや設定と関連付けたりすることはありません。",
+      "この試作版には Firebase の報告設定がなく、Firebase の利用統計は送信されません。",
     ),
     "disclaimerAnalyticsTitle": MessageLookupByLibrary.simpleMessage(
       "Firebase Analytics（利用統計）",
@@ -406,13 +406,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "disclaimerChangesTitle": MessageLookupByLibrary.simpleMessage("本声明の変更"),
     "disclaimerCrashlyticsContent": MessageLookupByLibrary.simpleMessage(
-      "アプリがクラッシュした際に、クラッシュレポートを自動的に送信します。\n\n収集内容：クラッシュのスタックトレースとエラー情報、発生日時、アプリのバージョンとビルド番号、端末のメーカーとモデル、Android のバージョン、画面の向き、空きメモリと空きストレージ、root 化の有無、およびインストール時に生成され再インストールでリセットされるランダムなインストール ID。\n\n目的：クラッシュの特定と修正のためにのみ使用します。\n\n「ツール > 一般 > クラッシュ分析」からいつでもオフにできます。",
+      "この試作版には Firebase の報告設定がなく、Crashlytics のクラッシュ報告は送信されません。",
     ),
     "disclaimerCrashlyticsTitle": MessageLookupByLibrary.simpleMessage(
       "Firebase Crashlytics（クラッシュ分析）",
     ),
     "disclaimerDataProcessingContent": MessageLookupByLibrary.simpleMessage(
-      "これらのデータは Google が代わりに処理・保存し、お住まいの国または地域外（米国など）のサーバーに転送される場合があり、Google のプライバシーポリシーおよび Firebase のプライバシーとセキュリティに関する説明に従って取り扱われます。クラッシュレポートは最大 90 日間保存され、統計データは Firebase の既定の保存ポリシーに従って保存されます。",
+      "デバイスとネットワーク情報の取り扱いについては、選択した Tailscale または Headscale 制御サーバーのプライバシーポリシーを確認してください。",
     ),
     "disclaimerDesc": MessageLookupByLibrary.simpleMessage(
       "FlClash（以下「本ソフトウェア」）をご利用になる前に、本声明の内容をよくお読みになり、十分にご理解ください。「同意する」をタップすると、以下のすべての条項を読み、理解し、承諾したものとみなされます。同意いただけない場合は「終了」をタップし、本ソフトウェアの使用を中止してください。",
@@ -434,7 +434,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "オープンソースライセンス",
     ),
     "disclaimerPrivacyContent": MessageLookupByLibrary.simpleMessage(
-      "本ソフトウェアは、サブスクリプション URL、ノード情報、設定内容、閲覧したウェブサイト、接続記録、通信内容、ログを収集またはアップロードしません。これらのデータは端末内にのみ保存され、開発者がアクセスすることはできません。\n\n本ソフトウェアが外部ネットワークにアクセスするのは、プロファイル更新時に指定されたサブスクリプション URL へアクセスする場合や、アップデート確認時に GitHub へアクセスする場合など、該当する機能を使用したときのみです。\n\nデスクトップ版（Windows、macOS、Linux）には、統計やクラッシュレポートのサービスは一切組み込まれていません。Android 版には、安定性向上のため以下の 2 つの Google Firebase サービスが組み込まれています。",
+      "この試作版には Firebase の報告設定はありません。Tailscale を有効にすると、選択した制御サーバーと中継サーバーに接続し、デバイス識別情報とネットワーク情報を制御サーバーに送信します。Taildrop のファイルは Tailscale 経由で転送されます。ノード状態と受信箱はこのデバイスのアプリ専用領域に保存されます。",
     ),
     "disclaimerPrivacyTitle": MessageLookupByLibrary.simpleMessage(
       "データ収集とプライバシー",

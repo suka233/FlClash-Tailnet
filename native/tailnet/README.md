@@ -1,6 +1,6 @@
 # FlClash Tailnet Android prototype
 
-FlClash keeps sole ownership of Android VpnService and its TUN descriptor. Mihomo handles ordinary proxy traffic. Official tailscaled runs with userspace networking in a separate process, exposes an authenticated loopback SOCKS endpoint, and retains official control-plane, WireGuard, DERP and Taildrop behavior. No credentials are embedded in a profile or source tree.
+FlClash keeps sole ownership of Android VpnService and its TUN descriptor. Mihomo handles ordinary proxy traffic. Official tailscaled runs with userspace networking in a separate process, exposes an authenticated loopback SOCKS endpoint, and retains official control-plane, WireGuard, DERP and Taildrop behavior. No control-plane credentials are embedded in subscriptions or the source tree. A private random SOCKS credential is injected only into the effective runtime profile.
 
 The final profile adapter prepends Tailnet address and advertised subnet rules, adds the private SOCKS outbound, and integrates MagicDNS through a loopback resolver and host entries. Tailnet traffic fails into the private backend when it is unavailable; it does not fall through to the internet proxy. Rule mode is enforced while enabled. Default exit routes are deliberately excluded.
 

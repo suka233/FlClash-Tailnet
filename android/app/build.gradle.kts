@@ -38,6 +38,11 @@ android {
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        ndk {
+            val abis = mapOf("android-arm64" to "arm64-v8a", "android-arm" to "armeabi-v7a", "android-x64" to "x86_64")
+            val platforms = (rootProject.findProperty("target-platform") as String?)?.split(",") ?: listOf("android-arm64")
+            abiFilters += platforms.map { abis[it.trim()] ?: error("Unsupported Android platform $it") }
+        }
     }
 
     signingConfigs {

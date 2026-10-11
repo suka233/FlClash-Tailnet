@@ -2320,10 +2320,10 @@ class AppLocalizations {
     );
   }
 
-  /// `The Software does not collect or upload your subscription URLs, node details, configuration content, visited websites, connection records, traffic content, or logs. This data stays on your device and the developers have no access to it.\n\nThe Software only reaches the network when you use a feature that needs it, such as fetching the subscription URL you provided when updating a profile, or contacting GitHub when checking for updates.\n\nThe desktop versions (Windows, macOS, Linux) include no analytics or crash reporting service. The Android version includes the following two Google Firebase services to improve stability:`
+  /// `This prototype has no Firebase reporting configuration. Enabling Tailscale connects to your selected control server and relay servers; device identity and network metadata are shared with that server. Taildrop files are transferred over Tailscale. Node state and the received-file inbox are stored privately on this device.`
   String get disclaimerPrivacyContent {
     return Intl.message(
-      'The Software does not collect or upload your subscription URLs, node details, configuration content, visited websites, connection records, traffic content, or logs. This data stays on your device and the developers have no access to it.\n\nThe Software only reaches the network when you use a feature that needs it, such as fetching the subscription URL you provided when updating a profile, or contacting GitHub when checking for updates.\n\nThe desktop versions (Windows, macOS, Linux) include no analytics or crash reporting service. The Android version includes the following two Google Firebase services to improve stability:',
+      'This prototype has no Firebase reporting configuration. Enabling Tailscale connects to your selected control server and relay servers; device identity and network metadata are shared with that server. Taildrop files are transferred over Tailscale. Node state and the received-file inbox are stored privately on this device.',
       name: 'disclaimerPrivacyContent',
       desc: '',
       args: [],
@@ -2340,10 +2340,10 @@ class AppLocalizations {
     );
   }
 
-  /// `When the app crashes, a crash report is uploaded automatically.\n\nWhat is collected: the crash stack trace and error message, the time of the crash, the app version and build number, the device brand and model, the Android version, screen orientation, free memory and storage, whether the device is rooted, and a random installation ID that is created on install and reset on reinstall.\n\nPurpose: only to locate and fix crashes.\n\nYou can turn it off at any time under "Tools > General > Crash analytics".`
+  /// `Firebase reporting is not configured in this prototype. No Crashlytics reports are uploaded.`
   String get disclaimerCrashlyticsContent {
     return Intl.message(
-      'When the app crashes, a crash report is uploaded automatically.\n\nWhat is collected: the crash stack trace and error message, the time of the crash, the app version and build number, the device brand and model, the Android version, screen orientation, free memory and storage, whether the device is rooted, and a random installation ID that is created on install and reset on reinstall.\n\nPurpose: only to locate and fix crashes.\n\nYou can turn it off at any time under "Tools > General > Crash analytics".',
+      'Firebase reporting is not configured in this prototype. No Crashlytics reports are uploaded.',
       name: 'disclaimerCrashlyticsContent',
       desc: '',
       args: [],
@@ -2360,20 +2360,20 @@ class AppLocalizations {
     );
   }
 
-  /// `Basic app usage statistics are collected automatically with Firebase.\n\nWhat is collected: basic events such as first launch, app opens and session length, and app updates; an app instance ID; the device model, OS version, and system language; and an approximate country- or region-level location inferred from the IP address.\n\nPurpose: only to understand the number of active devices, version distribution, and OS compatibility. The developers do not use this data for advertising, do not sell it, and do not link it to your subscriptions or configurations.`
+  /// `Firebase reporting is not configured in this prototype. No Firebase usage statistics are uploaded.`
   String get disclaimerAnalyticsContent {
     return Intl.message(
-      'Basic app usage statistics are collected automatically with Firebase.\n\nWhat is collected: basic events such as first launch, app opens and session length, and app updates; an app instance ID; the device model, OS version, and system language; and an approximate country- or region-level location inferred from the IP address.\n\nPurpose: only to understand the number of active devices, version distribution, and OS compatibility. The developers do not use this data for advertising, do not sell it, and do not link it to your subscriptions or configurations.',
+      'Firebase reporting is not configured in this prototype. No Firebase usage statistics are uploaded.',
       name: 'disclaimerAnalyticsContent',
       desc: '',
       args: [],
     );
   }
 
-  /// `This data is processed and stored by Google on our behalf, may be transferred to servers outside your country or region (such as in the United States), and is governed by the Google Privacy Policy and the Firebase privacy and security documentation. Crash reports are kept for up to 90 days; statistics are kept under the Firebase default retention policy.`
+  /// `Review the privacy policy of your selected Tailscale or Headscale control server for its handling of device and network metadata.`
   String get disclaimerDataProcessingContent {
     return Intl.message(
-      'This data is processed and stored by Google on our behalf, may be transferred to servers outside your country or region (such as in the United States), and is governed by the Google Privacy Policy and the Firebase privacy and security documentation. Crash reports are kept for up to 90 days; statistics are kept under the Firebase default retention policy.',
+      'Review the privacy policy of your selected Tailscale or Headscale control server for its handling of device and network metadata.',
       name: 'disclaimerDataProcessingContent',
       desc: '',
       args: [],
