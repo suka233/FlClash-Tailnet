@@ -1085,12 +1085,24 @@ class MessageLookup extends MessageLookupByLibrary {
       "热点客户端：在常规设置中开启“允许局域网访问”、配置代理认证，再将客户端代理设为手机热点地址和混合代理端口。未 root 的 Android 无法透明代理全部热点流量。",
     ),
     "tailnetInbox": MessageLookupByLibrary.simpleMessage("Taildrop · 收件箱"),
+    "tailnetInvalidLoginUrl": MessageLookupByLibrary.simpleMessage(
+      "控制服务器返回了无效的登录链接。",
+    ),
     "tailnetLogin": MessageLookupByLibrary.simpleMessage("登录 / 重新连接"),
+    "tailnetLoginRequired": MessageLookupByLibrary.simpleMessage(
+      "仍需完成认证。点击“登录 / 重新连接”，然后等待登录链接。",
+    ),
+    "tailnetLoginTimeout": MessageLookupByLibrary.simpleMessage(
+      "30 秒内未收到登录链接。请查看上方的连接错误，确认这台手机能访问控制服务器，再重试。",
+    ),
     "tailnetNoFiles": MessageLookupByLibrary.simpleMessage("暂无收到的文件"),
     "tailnetNoTargets": MessageLookupByLibrary.simpleMessage(
       "暂无可接收的个人设备。请在两台设备上登录同一账户。",
     ),
     "tailnetOpenLogin": MessageLookupByLibrary.simpleMessage("打开登录页面"),
+    "tailnetOpenLoginFailed": MessageLookupByLibrary.simpleMessage(
+      "无法打开浏览器。请复制下方登录链接，手动打开。",
+    ),
     "tailnetRuleMode": MessageLookupByLibrary.simpleMessage(
       "与代理共用一个 VPN。启用期间使用规则模式。",
     ),
@@ -1101,6 +1113,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "tailnetStatus": MessageLookupByLibrary.simpleMessage("Tailscale 状态"),
     "tailnetTitle": MessageLookupByLibrary.simpleMessage(
       "Tailscale 与 Taildrop",
+    ),
+    "tailnetWaitingLogin": MessageLookupByLibrary.simpleMessage(
+      "正在等待控制服务器返回登录链接，收到后会自动打开浏览器。",
     ),
     "tapToAuthorize": MessageLookupByLibrary.simpleMessage("点击授权"),
     "tcpConcurrent": MessageLookupByLibrary.simpleMessage("TCP并发"),

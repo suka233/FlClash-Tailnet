@@ -732,9 +732,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "inputRuleContent": MessageLookupByLibrary.simpleMessage(
       "Enter the rule content",
     ),
-    "installedAppsPermissionDeniedMessage": MessageLookupByLibrary.simpleMessage(
-      "The app list permission was denied, so installed apps cannot be listed. Please grant it manually in system settings.",
-    ),
+    "installedAppsPermissionDeniedMessage":
+        MessageLookupByLibrary.simpleMessage(
+          "The app list permission was denied, so installed apps cannot be listed. Please grant it manually in system settings.",
+        ),
     "installedAppsPermissionDesc": MessageLookupByLibrary.simpleMessage(
       "This system hides the installed app list until the permission is granted. Authorize it to configure the per-app proxy.",
     ),
@@ -1436,13 +1437,25 @@ class MessageLookup extends MessageLookupByLibrary {
       "Hotspot clients: enable Allow LAN in General settings, set proxy authentication, then configure each client to use the phone hotspot address and the mixed proxy port. Android cannot transparently proxy all hotspot traffic without root.",
     ),
     "tailnetInbox": MessageLookupByLibrary.simpleMessage("Taildrop · inbox"),
+    "tailnetInvalidLoginUrl": MessageLookupByLibrary.simpleMessage(
+      "The control server returned an invalid sign-in link.",
+    ),
     "tailnetLogin": MessageLookupByLibrary.simpleMessage("Sign in / reconnect"),
+    "tailnetLoginRequired": MessageLookupByLibrary.simpleMessage(
+      "Authentication is still required. Tap Sign in, then wait for a sign-in link.",
+    ),
+    "tailnetLoginTimeout": MessageLookupByLibrary.simpleMessage(
+      "No sign-in link was received within 30 seconds. Check the connection errors above and whether this phone can reach the control server, then retry.",
+    ),
     "tailnetNoFiles": MessageLookupByLibrary.simpleMessage("No received files"),
     "tailnetNoTargets": MessageLookupByLibrary.simpleMessage(
       "No eligible personal devices. Sign in with the same account on both devices.",
     ),
     "tailnetOpenLogin": MessageLookupByLibrary.simpleMessage(
       "Open sign-in page",
+    ),
+    "tailnetOpenLoginFailed": MessageLookupByLibrary.simpleMessage(
+      "Could not open the browser. Copy the sign-in link below and open it manually.",
     ),
     "tailnetRuleMode": MessageLookupByLibrary.simpleMessage(
       "Uses the same VPN as the proxy. Rule mode is required while enabled.",
@@ -1456,6 +1469,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "tailnetStatus": MessageLookupByLibrary.simpleMessage("Tailscale status"),
     "tailnetTitle": MessageLookupByLibrary.simpleMessage(
       "Tailscale & Taildrop",
+    ),
+    "tailnetWaitingLogin": MessageLookupByLibrary.simpleMessage(
+      "Waiting for the control server to return a sign-in link. The browser will open automatically.",
     ),
     "tapToAuthorize": MessageLookupByLibrary.simpleMessage("Tap to authorize"),
     "tcpConcurrent": MessageLookupByLibrary.simpleMessage("TCP concurrent"),

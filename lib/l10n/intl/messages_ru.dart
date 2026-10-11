@@ -755,9 +755,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "inputRuleContent": MessageLookupByLibrary.simpleMessage(
       "Введите содержимое правила",
     ),
-    "installedAppsPermissionDeniedMessage": MessageLookupByLibrary.simpleMessage(
-      "Разрешение на список приложений отклонено, поэтому установленные приложения недоступны. Предоставьте его вручную в системных настройках.",
-    ),
+    "installedAppsPermissionDeniedMessage":
+        MessageLookupByLibrary.simpleMessage(
+          "Разрешение на список приложений отклонено, поэтому установленные приложения недоступны. Предоставьте его вручную в системных настройках.",
+        ),
     "installedAppsPermissionDesc": MessageLookupByLibrary.simpleMessage(
       "Эта система не выдаёт список установленных приложений без разрешения. Предоставьте его, чтобы настроить прокси для отдельных приложений.",
     ),
@@ -1511,8 +1512,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "Клиенты точки доступа: разрешите доступ из LAN и задайте аутентификацию прокси в общих настройках. На каждом клиенте укажите адрес телефона и смешанный порт прокси. Без root Android не может прозрачно проксировать весь трафик точки доступа.",
     ),
     "tailnetInbox": MessageLookupByLibrary.simpleMessage("Taildrop · входящие"),
+    "tailnetInvalidLoginUrl": MessageLookupByLibrary.simpleMessage(
+      "Сервер управления вернул неверную ссылку для входа.",
+    ),
     "tailnetLogin": MessageLookupByLibrary.simpleMessage(
       "Войти / переподключить",
+    ),
+    "tailnetLoginRequired": MessageLookupByLibrary.simpleMessage(
+      "Требуется авторизация. Нажмите «Войти / переподключиться» и дождитесь ссылки для входа.",
+    ),
+    "tailnetLoginTimeout": MessageLookupByLibrary.simpleMessage(
+      "Ссылка для входа не получена за 30 секунд. Проверьте ошибки подключения выше и доступность сервера управления с этого телефона, затем повторите попытку.",
     ),
     "tailnetNoFiles": MessageLookupByLibrary.simpleMessage(
       "Нет полученных файлов",
@@ -1522,6 +1532,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tailnetOpenLogin": MessageLookupByLibrary.simpleMessage(
       "Открыть страницу входа",
+    ),
+    "tailnetOpenLoginFailed": MessageLookupByLibrary.simpleMessage(
+      "Не удалось открыть браузер. Скопируйте ссылку ниже и откройте её вручную.",
     ),
     "tailnetRuleMode": MessageLookupByLibrary.simpleMessage(
       "Общий VPN с прокси. При включении используется режим правил.",
@@ -1537,6 +1550,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tailnetTitle": MessageLookupByLibrary.simpleMessage(
       "Tailscale и Taildrop",
+    ),
+    "tailnetWaitingLogin": MessageLookupByLibrary.simpleMessage(
+      "Ожидание ссылки для входа от сервера управления. Браузер откроется автоматически.",
     ),
     "tapToAuthorize": MessageLookupByLibrary.simpleMessage(
       "Нажмите, чтобы разрешить",

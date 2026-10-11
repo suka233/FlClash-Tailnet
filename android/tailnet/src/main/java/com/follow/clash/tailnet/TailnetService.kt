@@ -94,6 +94,7 @@ class TailnetService : Service() {
         callback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) = networkChanged()
             override fun onLost(network: Network) = networkChanged()
+            override fun onCapabilitiesChanged(network: Network, capabilities: NetworkCapabilities) = networkChanged()
             override fun onLinkPropertiesChanged(network: Network, properties: android.net.LinkProperties) = networkChanged()
         }.also {
             connectivity.registerNetworkCallback(NetworkRequest.Builder().addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET).addCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN).build(), it)
@@ -117,10 +118,7 @@ class TailnetService : Service() {
 
     private fun updateNetwork() {
         val connectivity = getSystemService(ConnectivityManager::class.java)
-        val physical = connectivity.allNetworks.firstOrNull {
-            val caps = connectivity.getNetworkCapabilities(it)
-            caps?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN)
-        }
+        val physical = physicalNetwork(connectivity)
         val interfaces = NetworkInterface.getNetworkInterfaces()?.toList().orEmpty().filter { it.isUp && !it.name.startsWith("tun") }.map {
             mapOf("name" to it.name, "index" to it.index, "mtu" to it.mtu,
                 "addresses" to it.interfaceAddresses.mapNotNull { address -> address.address?.hostAddress?.substringBefore('%')?.let { ip -> "$ip/${address.networkPrefixLength}" } })

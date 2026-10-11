@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.LocalServerSocket
 import android.net.LocalSocket
-import android.net.NetworkCapabilities
 import android.os.ParcelFileDescriptor
 import android.os.Process
 import android.system.Os
@@ -41,11 +40,7 @@ class ProtectionBroker(context: Context, val name: String) : Closeable {
                             check(descriptors.size == 1)
                             try { ParcelFileDescriptor.dup(descriptors[0]).use { duplicate ->
                                 val protect = SocketProtection.protect
-                                val network = connectivity.allNetworks.firstOrNull { candidate ->
-                                    val capabilities = connectivity.getNetworkCapabilities(candidate)
-                                    capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true &&
-                                        capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN)
-                                }
+                                val network = physicalNetwork(connectivity)
                                 network?.bindSocket(duplicate.fileDescriptor)
                                 val protected = protect?.invoke(duplicate.fd) ?: true
                                 socket.outputStream.write(if (protected) 1 else 0)

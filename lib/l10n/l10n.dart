@@ -6597,6 +6597,56 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Authentication is still required. Tap Sign in, then wait for a sign-in link.`
+  String get tailnetLoginRequired {
+    return Intl.message(
+      'Authentication is still required. Tap Sign in, then wait for a sign-in link.',
+      name: 'tailnetLoginRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Waiting for the control server to return a sign-in link. The browser will open automatically.`
+  String get tailnetWaitingLogin {
+    return Intl.message(
+      'Waiting for the control server to return a sign-in link. The browser will open automatically.',
+      name: 'tailnetWaitingLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No sign-in link was received within 30 seconds. Check the connection errors above and whether this phone can reach the control server, then retry.`
+  String get tailnetLoginTimeout {
+    return Intl.message(
+      'No sign-in link was received within 30 seconds. Check the connection errors above and whether this phone can reach the control server, then retry.',
+      name: 'tailnetLoginTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not open the browser. Copy the sign-in link below and open it manually.`
+  String get tailnetOpenLoginFailed {
+    return Intl.message(
+      'Could not open the browser. Copy the sign-in link below and open it manually.',
+      name: 'tailnetOpenLoginFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The control server returned an invalid sign-in link.`
+  String get tailnetInvalidLoginUrl {
+    return Intl.message(
+      'The control server returned an invalid sign-in link.',
+      name: 'tailnetInvalidLoginUrl',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -22,6 +22,7 @@ class _TailnetViewState extends ConsumerState<TailnetView> {
     text: 'https://controlplane.tailscale.com',
   );
   Timer? _timer;
+  Timer? _loginTimer;
   Map<String, dynamic> _snapshot = {};
   bool _busy = false;
   bool _polling = false;
@@ -29,6 +30,8 @@ class _TailnetViewState extends ConsumerState<TailnetView> {
   String? _actionError;
   String? _routingSignature;
   bool _controlLoaded = false;
+  bool _awaitingLogin = false;
+  bool _loginTimedOut = false;
 
   @override
   void initState() {
@@ -62,12 +65,21 @@ class _TailnetViewState extends ConsumerState<TailnetView> {
       setState(() {
         _snapshot = snapshot;
         _error = snapshot['error'] as String?;
+        if (snapshot['enabled'] != true ||
+            status['BackendState'] == 'Running') {
+          _cancelLoginWait();
+        }
       });
       if (_routingSignature != signature) {
         _routingSignature = signature;
         ref
             .read(setupActionProvider.notifier)
             .applyProfileDebounce(silence: true);
+      }
+      final auth = (status['AuthURL'] ?? '').toString();
+      if (_awaitingLogin && auth.isNotEmpty) {
+        setState(_cancelLoginWait);
+        await _run(() => _openLogin(auth));
       }
     } catch (error) {
       if (mounted) setState(() => _error = error.toString());
@@ -104,11 +116,49 @@ class _TailnetViewState extends ConsumerState<TailnetView> {
           .update((s) => s.copyWith(mode: Mode.rule));
     }
     await Tailnet.setEnabled(enabled);
+    if (!enabled && mounted) setState(_cancelLoginWait);
   });
+
+  void _cancelLoginWait() {
+    _loginTimer?.cancel();
+    _loginTimer = null;
+    _awaitingLogin = false;
+    _loginTimedOut = false;
+  }
+
+  Future<void> _login() => _run(() async {
+    setState(_cancelLoginWait);
+    await Tailnet.login(_control.text.trim());
+    if (!mounted) return;
+    setState(() => _awaitingLogin = true);
+    _loginTimer = Timer(const Duration(seconds: 30), () {
+      if (!mounted) return;
+      setState(() {
+        _awaitingLogin = false;
+        _loginTimedOut = true;
+        _loginTimer = null;
+      });
+    });
+  });
+
+  Future<void> _openLogin(String auth) async {
+    final uri = Uri.tryParse(auth);
+    if (uri == null ||
+        !uri.hasAuthority ||
+        uri.host.isEmpty ||
+        (uri.scheme != 'https' && uri.scheme != 'http')) {
+      throw MessageException(context.appLocalizations.tailnetInvalidLoginUrl);
+    }
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      if (!mounted) return;
+      throw MessageException(context.appLocalizations.tailnetOpenLoginFailed);
+    }
+  }
 
   @override
   void dispose() {
     _timer?.cancel();
+    _loginTimer?.cancel();
     _control.dispose();
     super.dispose();
   }
@@ -119,6 +169,7 @@ class _TailnetViewState extends ConsumerState<TailnetView> {
     final enabled = _snapshot['enabled'] == true;
     final status = _snapshot['status'] as Map? ?? {};
     final auth = (status['AuthURL'] ?? '').toString();
+    final health = (status['Health'] as List? ?? []).join('\n');
     final files = _snapshot['files'] as List? ?? [];
     final targets = _snapshot['targets'] as List? ?? [];
     return CommonScaffold(
@@ -139,6 +190,14 @@ class _TailnetViewState extends ConsumerState<TailnetView> {
               '${status['BackendState'] ?? (_snapshot['running'] == true ? l.connecting : l.disconnected)}\n${(status['TailscaleIPs'] as List? ?? []).join(' · ')}',
             ),
           ),
+          if (enabled && health.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: SelectableText(
+                health,
+                style: TextStyle(color: context.colorScheme.error),
+              ),
+            ),
           if ((_actionError ?? _error) != null)
             Padding(
               padding: const EdgeInsets.all(16),
@@ -147,42 +206,51 @@ class _TailnetViewState extends ConsumerState<TailnetView> {
                 style: TextStyle(color: context.colorScheme.error),
               ),
             ),
-          if (_busy) const LinearProgressIndicator(),
+          if (_busy || _awaitingLogin) const LinearProgressIndicator(),
           Padding(
             padding: const EdgeInsets.all(16),
             child: TextField(
               controller: _control,
-              enabled: !_busy,
+              enabled: !_busy && !_awaitingLogin,
               decoration: InputDecoration(labelText: l.tailnetControlUrl),
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: FilledButton(
-              onPressed: enabled && !_busy && _snapshot['running'] == true
-                  ? () => _run(() => Tailnet.login(_control.text.trim()))
+              onPressed:
+                  enabled &&
+                      !_busy &&
+                      !_awaitingLogin &&
+                      _snapshot['running'] == true
+                  ? _login
                   : null,
               child: Text(l.tailnetLogin),
             ),
           ),
+          if (enabled && auth.isEmpty && status['BackendState'] == 'NeedsLogin')
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                _awaitingLogin
+                    ? l.tailnetWaitingLogin
+                    : _loginTimedOut
+                    ? l.tailnetLoginTimeout
+                    : l.tailnetLoginRequired,
+              ),
+            ),
           if (auth.isNotEmpty)
             Padding(
               padding: const EdgeInsets.all(16),
               child: FilledButton.tonal(
-                onPressed: _busy
-                    ? null
-                    : () => _run(() async {
-                        final uri = Uri.parse(auth);
-                        if (uri.scheme != 'https' && uri.scheme != 'http') {
-                          throw const FormatException('Invalid login URL');
-                        }
-                        await launchUrl(
-                          uri,
-                          mode: LaunchMode.externalApplication,
-                        );
-                      }),
+                onPressed: _busy ? null : () => _run(() => _openLogin(auth)),
                 child: Text(l.tailnetOpenLogin),
               ),
+            ),
+          if (auth.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: SelectableText(auth),
             ),
           ListHeader(title: l.tailnetSend),
           if (targets.isEmpty) ListItem(title: Text(l.tailnetNoTargets)),

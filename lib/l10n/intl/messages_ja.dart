@@ -1220,12 +1220,24 @@ class MessageLookup extends MessageLookupByLibrary {
       "テザリング端末：一般設定で LAN アクセスとプロキシ認証を設定し、各端末のプロキシにスマートフォンのアドレスと混合ポートを指定してください。root 権限なしでは全通信の透過プロキシはできません。",
     ),
     "tailnetInbox": MessageLookupByLibrary.simpleMessage("Taildrop · 受信箱"),
+    "tailnetInvalidLoginUrl": MessageLookupByLibrary.simpleMessage(
+      "制御サーバーから無効なログインリンクが返されました。",
+    ),
     "tailnetLogin": MessageLookupByLibrary.simpleMessage("ログイン / 再接続"),
+    "tailnetLoginRequired": MessageLookupByLibrary.simpleMessage(
+      "認証が必要です。「ログイン / 再接続」を押し、ログインリンクを待ってください。",
+    ),
+    "tailnetLoginTimeout": MessageLookupByLibrary.simpleMessage(
+      "30 秒以内にログインリンクを受信できませんでした。上の接続エラーと、この端末から制御サーバーに接続できるかを確認し、再試行してください。",
+    ),
     "tailnetNoFiles": MessageLookupByLibrary.simpleMessage("受信ファイルはありません"),
     "tailnetNoTargets": MessageLookupByLibrary.simpleMessage(
       "受信可能な個人デバイスがありません。両方のデバイスで同じアカウントにログインしてください。",
     ),
     "tailnetOpenLogin": MessageLookupByLibrary.simpleMessage("ログインページを開く"),
+    "tailnetOpenLoginFailed": MessageLookupByLibrary.simpleMessage(
+      "ブラウザーを開けませんでした。下のログインリンクをコピーして手動で開いてください。",
+    ),
     "tailnetRuleMode": MessageLookupByLibrary.simpleMessage(
       "プロキシと同じ VPN を使用します。有効時はルールモードが必要です。",
     ),
@@ -1238,6 +1250,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "tailnetStatus": MessageLookupByLibrary.simpleMessage("Tailscale の状態"),
     "tailnetTitle": MessageLookupByLibrary.simpleMessage(
       "Tailscale と Taildrop",
+    ),
+    "tailnetWaitingLogin": MessageLookupByLibrary.simpleMessage(
+      "制御サーバーからのログインリンクを待っています。届くとブラウザーが自動的に開きます。",
     ),
     "tapToAuthorize": MessageLookupByLibrary.simpleMessage("タップして許可"),
     "tcpConcurrent": MessageLookupByLibrary.simpleMessage("TCP同時接続"),

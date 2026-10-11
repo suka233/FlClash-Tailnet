@@ -793,5 +793,10 @@
   "tailnetNoFiles": "No received files",
   "tailnetSave": "Save a copy",
   "tailnetSaved": "File saved; the inbox copy is retained",
-  "tailnetHotspotHelp": "Hotspot clients: enable Allow LAN in General settings, set proxy authentication, then configure each client to use the phone hotspot address and the mixed proxy port. Android cannot transparently proxy all hotspot traffic without root."
+  "tailnetHotspotHelp": "Hotspot clients: enable Allow LAN in General settings, set proxy authentication, then configure each client to use the phone hotspot address and the mixed proxy port. Android cannot transparently proxy all hotspot traffic without root.",
+  "tailnetLoginRequired": "Authentication is still required. Tap Sign in, then wait for a sign-in link.",
+  "tailnetWaitingLogin": "Waiting for the control server to return a sign-in link. The browser will open automatically.",
+  "tailnetLoginTimeout": "No sign-in link was received within 30 seconds. Check the connection errors above and whether this phone can reach the control server, then retry.",
+  "tailnetOpenLoginFailed": "Could not open the browser. Copy the sign-in link below and open it manually.",
+  "tailnetInvalidLoginUrl": "The control server returned an invalid sign-in link."
 }
