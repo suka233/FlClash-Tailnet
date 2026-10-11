@@ -1,0 +1,5 @@
+<resources>
+    <string name="tailnet_service_title">FlClash Tailscale</string>
+    <string name="tailnet_service_active">Tailscale is active; Taildrop can receive files</string>
+    <string name="tailnet_service_channel">Tailscale connection</string>
+</resources>

@@ -77,3 +77,9 @@ devtools_options.yaml
 .fvm/
 .fvmrc
 /coverage/lcov.info
+/native/tailnet/.build/
+/android/tailnet/src/main/jniLibs/
+
+/android/app/keystore.jks
+
+/android/.kotlin/

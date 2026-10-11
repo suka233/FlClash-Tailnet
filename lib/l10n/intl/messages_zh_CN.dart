@@ -323,7 +323,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dashboard": MessageLookupByLibrary.simpleMessage("仪表盘"),
     "dataChangedSave": MessageLookupByLibrary.simpleMessage("检测到数据有更改，是否保存"),
     "dataCollectionContent": MessageLookupByLibrary.simpleMessage(
-      "本应用使用 Firebase Crashlytics 收集崩溃信息以改进应用稳定性。\n收集的数据包括设备信息和崩溃详情，不包含个人敏感数据。\n您可以在设置中关闭此功能。",
+      "本原型未配置 Firebase 上报。启用 Tailscale 后，会连接你选择的控制服务器和中继服务器，并向控制服务器提供设备身份及网络元数据。Taildrop 文件通过 Tailscale 传输；节点状态和收件箱保存在手机的应用私有目录中。",
     ),
     "dataCollectionTip": MessageLookupByLibrary.simpleMessage("数据收集说明"),
     "databaseWriteFailedTip": MessageLookupByLibrary.simpleMessage(
@@ -1078,6 +1078,30 @@ class MessageLookup extends MessageLookupByLibrary {
     "systemProxy": MessageLookupByLibrary.simpleMessage("系统代理"),
     "tab": MessageLookupByLibrary.simpleMessage("标签页"),
     "tabAnimation": MessageLookupByLibrary.simpleMessage("选项卡动画"),
+    "tailnetChooseFile": MessageLookupByLibrary.simpleMessage("点击选择并发送文件"),
+    "tailnetControlUrl": MessageLookupByLibrary.simpleMessage("控制服务器地址"),
+    "tailnetEnable": MessageLookupByLibrary.simpleMessage("启用 Tailscale"),
+    "tailnetHotspotHelp": MessageLookupByLibrary.simpleMessage(
+      "热点客户端：在常规设置中开启“允许局域网访问”、配置代理认证，再将客户端代理设为手机热点地址和混合代理端口。未 root 的 Android 无法透明代理全部热点流量。",
+    ),
+    "tailnetInbox": MessageLookupByLibrary.simpleMessage("Taildrop · 收件箱"),
+    "tailnetLogin": MessageLookupByLibrary.simpleMessage("登录 / 重新连接"),
+    "tailnetNoFiles": MessageLookupByLibrary.simpleMessage("暂无收到的文件"),
+    "tailnetNoTargets": MessageLookupByLibrary.simpleMessage(
+      "暂无可接收的个人设备。请在两台设备上登录同一账户。",
+    ),
+    "tailnetOpenLogin": MessageLookupByLibrary.simpleMessage("打开登录页面"),
+    "tailnetRuleMode": MessageLookupByLibrary.simpleMessage(
+      "与代理共用一个 VPN。启用期间使用规则模式。",
+    ),
+    "tailnetSave": MessageLookupByLibrary.simpleMessage("保存副本"),
+    "tailnetSaved": MessageLookupByLibrary.simpleMessage("文件已保存；收件箱仍保留原文件"),
+    "tailnetSend": MessageLookupByLibrary.simpleMessage("Taildrop · 发送"),
+    "tailnetSent": MessageLookupByLibrary.simpleMessage("文件已发送"),
+    "tailnetStatus": MessageLookupByLibrary.simpleMessage("Tailscale 状态"),
+    "tailnetTitle": MessageLookupByLibrary.simpleMessage(
+      "Tailscale 与 Taildrop",
+    ),
     "tapToAuthorize": MessageLookupByLibrary.simpleMessage("点击授权"),
     "tcpConcurrent": MessageLookupByLibrary.simpleMessage("TCP并发"),
     "testInterval": MessageLookupByLibrary.simpleMessage("测试间隔"),

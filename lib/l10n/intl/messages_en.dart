@@ -425,7 +425,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Data changes detected. Save them?",
     ),
     "dataCollectionContent": MessageLookupByLibrary.simpleMessage(
-      "This app uses Firebase Crashlytics to collect crash information to improve stability.\nThe collected data includes device information and crash details, and contains no personally sensitive data.\nYou can turn this off in settings.",
+      "This prototype has no Firebase reporting configuration. Enabling Tailscale connects to your selected control server and relay servers; device identity and network metadata are shared with that server. Taildrop files are transferred over Tailscale. Node state and the received-file inbox are stored privately on this device.",
     ),
     "dataCollectionTip": MessageLookupByLibrary.simpleMessage(
       "Data collection notice",
@@ -1425,6 +1425,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "systemProxy": MessageLookupByLibrary.simpleMessage("System proxy"),
     "tab": MessageLookupByLibrary.simpleMessage("Tab"),
     "tabAnimation": MessageLookupByLibrary.simpleMessage("Tab animation"),
+    "tailnetChooseFile": MessageLookupByLibrary.simpleMessage(
+      "Tap to choose and send a file",
+    ),
+    "tailnetControlUrl": MessageLookupByLibrary.simpleMessage(
+      "Control server URL",
+    ),
+    "tailnetEnable": MessageLookupByLibrary.simpleMessage("Enable Tailscale"),
+    "tailnetHotspotHelp": MessageLookupByLibrary.simpleMessage(
+      "Hotspot clients: enable Allow LAN in General settings, set proxy authentication, then configure each client to use the phone hotspot address and the mixed proxy port. Android cannot transparently proxy all hotspot traffic without root.",
+    ),
+    "tailnetInbox": MessageLookupByLibrary.simpleMessage("Taildrop · inbox"),
+    "tailnetLogin": MessageLookupByLibrary.simpleMessage("Sign in / reconnect"),
+    "tailnetNoFiles": MessageLookupByLibrary.simpleMessage("No received files"),
+    "tailnetNoTargets": MessageLookupByLibrary.simpleMessage(
+      "No eligible personal devices. Sign in with the same account on both devices.",
+    ),
+    "tailnetOpenLogin": MessageLookupByLibrary.simpleMessage(
+      "Open sign-in page",
+    ),
+    "tailnetRuleMode": MessageLookupByLibrary.simpleMessage(
+      "Uses the same VPN as the proxy. Rule mode is required while enabled.",
+    ),
+    "tailnetSave": MessageLookupByLibrary.simpleMessage("Save a copy"),
+    "tailnetSaved": MessageLookupByLibrary.simpleMessage(
+      "File saved; the inbox copy is retained",
+    ),
+    "tailnetSend": MessageLookupByLibrary.simpleMessage("Taildrop · send"),
+    "tailnetSent": MessageLookupByLibrary.simpleMessage("File sent"),
+    "tailnetStatus": MessageLookupByLibrary.simpleMessage("Tailscale status"),
+    "tailnetTitle": MessageLookupByLibrary.simpleMessage(
+      "Tailscale & Taildrop",
+    ),
     "tapToAuthorize": MessageLookupByLibrary.simpleMessage("Tap to authorize"),
     "tcpConcurrent": MessageLookupByLibrary.simpleMessage("TCP concurrent"),
     "testInterval": MessageLookupByLibrary.simpleMessage("Test interval"),

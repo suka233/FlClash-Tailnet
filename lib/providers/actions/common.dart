@@ -29,6 +29,7 @@ class CommonAction extends _$CommonAction {
   }
 
   void updateMode() {
+    if (system.isAndroid && Tailnet.lastSnapshot['enabled'] == true) return;
     ref.read(patchClashConfigProvider.notifier).update((state) {
       final index = Mode.values.indexWhere((item) => item == state.mode);
       if (index == -1) return state;

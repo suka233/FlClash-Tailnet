@@ -1,0 +1,60 @@
+name: Merge FlClash upstream
+on:
+  schedule:
+    - cron: '17 5 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: flclash-upstream-sync
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.merge.outputs.changed }}
+      sha: ${{ steps.merge.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: next
+          fetch-depth: 0
+      - name: Prepare merge candidate
+        id: merge
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git remote add upstream https://github.com/chen08209/FlClash.git
+          git fetch upstream main
+          if git merge-base --is-ancestor upstream/main HEAD; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git checkout -B sync/upstream
+          # Conflicts fail this run. They are never resolved by choosing one side.
+          git merge --no-edit --no-ff upstream/main
+          git push --force-with-lease origin HEAD:sync/upstream
+          echo 'changed=true' >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  validate:
+    needs: prepare
+    if: needs.prepare.outputs.changed == 'true'
+    uses: ./.github/workflows/tailnet-ci.yml
+    with:
+      ref: ${{ needs.prepare.outputs.sha }}
+  merge:
+    needs: [prepare, validate]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: next
+          fetch-depth: 0
+      - name: Advance next to the exact tested candidate
+        env:
+          SHA: ${{ needs.prepare.outputs.sha }}
+        run: |
+          git fetch origin sync/upstream
+          test "$(git rev-parse origin/sync/upstream)" = "$SHA"
+          git merge --ff-only "$SHA"
+          git push origin HEAD:next

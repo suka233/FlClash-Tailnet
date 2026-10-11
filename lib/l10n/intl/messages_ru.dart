@@ -440,7 +440,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Обнаружены изменения данных. Сохранить их?",
     ),
     "dataCollectionContent": MessageLookupByLibrary.simpleMessage(
-      "Это приложение использует Firebase Crashlytics для сбора информации о сбоях, чтобы повысить стабильность.\nСобираемые данные включают сведения об устройстве и подробности сбоя и не содержат личных конфиденциальных данных.\nЭту функцию можно отключить в настройках.",
+      "В прототипе не настроена отправка отчётов Firebase. При включении Tailscale приложение подключается к выбранному серверу управления и ретрансляторам и передаёт серверу сведения об устройстве и сети. Файлы Taildrop передаются через Tailscale. Состояние узла и входящие файлы хранятся в закрытом каталоге приложения на телефоне.",
     ),
     "dataCollectionTip": MessageLookupByLibrary.simpleMessage(
       "Уведомление о сборе данных",
@@ -1500,6 +1500,44 @@ class MessageLookup extends MessageLookupByLibrary {
     "systemProxy": MessageLookupByLibrary.simpleMessage("Системный прокси"),
     "tab": MessageLookupByLibrary.simpleMessage("Вкладки"),
     "tabAnimation": MessageLookupByLibrary.simpleMessage("Анимация вкладок"),
+    "tailnetChooseFile": MessageLookupByLibrary.simpleMessage(
+      "Нажмите, чтобы выбрать и отправить файл",
+    ),
+    "tailnetControlUrl": MessageLookupByLibrary.simpleMessage(
+      "URL сервера управления",
+    ),
+    "tailnetEnable": MessageLookupByLibrary.simpleMessage("Включить Tailscale"),
+    "tailnetHotspotHelp": MessageLookupByLibrary.simpleMessage(
+      "Клиенты точки доступа: разрешите доступ из LAN и задайте аутентификацию прокси в общих настройках. На каждом клиенте укажите адрес телефона и смешанный порт прокси. Без root Android не может прозрачно проксировать весь трафик точки доступа.",
+    ),
+    "tailnetInbox": MessageLookupByLibrary.simpleMessage("Taildrop · входящие"),
+    "tailnetLogin": MessageLookupByLibrary.simpleMessage(
+      "Войти / переподключить",
+    ),
+    "tailnetNoFiles": MessageLookupByLibrary.simpleMessage(
+      "Нет полученных файлов",
+    ),
+    "tailnetNoTargets": MessageLookupByLibrary.simpleMessage(
+      "Нет подходящих личных устройств. Войдите в одну учётную запись на обоих устройствах.",
+    ),
+    "tailnetOpenLogin": MessageLookupByLibrary.simpleMessage(
+      "Открыть страницу входа",
+    ),
+    "tailnetRuleMode": MessageLookupByLibrary.simpleMessage(
+      "Общий VPN с прокси. При включении используется режим правил.",
+    ),
+    "tailnetSave": MessageLookupByLibrary.simpleMessage("Сохранить копию"),
+    "tailnetSaved": MessageLookupByLibrary.simpleMessage(
+      "Файл сохранён; копия во входящих остаётся",
+    ),
+    "tailnetSend": MessageLookupByLibrary.simpleMessage("Taildrop · отправка"),
+    "tailnetSent": MessageLookupByLibrary.simpleMessage("Файл отправлен"),
+    "tailnetStatus": MessageLookupByLibrary.simpleMessage(
+      "Состояние Tailscale",
+    ),
+    "tailnetTitle": MessageLookupByLibrary.simpleMessage(
+      "Tailscale и Taildrop",
+    ),
     "tapToAuthorize": MessageLookupByLibrary.simpleMessage(
       "Нажмите, чтобы разрешить",
     ),

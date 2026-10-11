@@ -354,7 +354,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "データの変更を検出しました。保存しますか？",
     ),
     "dataCollectionContent": MessageLookupByLibrary.simpleMessage(
-      "本アプリは、安定性向上のために Firebase Crashlytics を使用してクラッシュ情報を収集します。\n収集されるデータにはデバイス情報とクラッシュの詳細が含まれますが、個人の機密データは含まれません。\nこの機能は設定で無効にできます。",
+      "この試作版には Firebase の報告設定はありません。Tailscale を有効にすると、選択した制御サーバーと中継サーバーに接続し、デバイス識別情報とネットワーク情報を制御サーバーに送信します。Taildrop のファイルは Tailscale 経由で転送されます。ノード状態と受信箱はこのデバイスのアプリ専用領域に保存されます。",
     ),
     "dataCollectionTip": MessageLookupByLibrary.simpleMessage("データ収集について"),
     "databaseWriteFailedTip": MessageLookupByLibrary.simpleMessage(
@@ -1211,6 +1211,34 @@ class MessageLookup extends MessageLookupByLibrary {
     "systemProxy": MessageLookupByLibrary.simpleMessage("システムプロキシ"),
     "tab": MessageLookupByLibrary.simpleMessage("タブ"),
     "tabAnimation": MessageLookupByLibrary.simpleMessage("タブアニメーション"),
+    "tailnetChooseFile": MessageLookupByLibrary.simpleMessage(
+      "タップしてファイルを選択・送信",
+    ),
+    "tailnetControlUrl": MessageLookupByLibrary.simpleMessage("制御サーバー URL"),
+    "tailnetEnable": MessageLookupByLibrary.simpleMessage("Tailscale を有効にする"),
+    "tailnetHotspotHelp": MessageLookupByLibrary.simpleMessage(
+      "テザリング端末：一般設定で LAN アクセスとプロキシ認証を設定し、各端末のプロキシにスマートフォンのアドレスと混合ポートを指定してください。root 権限なしでは全通信の透過プロキシはできません。",
+    ),
+    "tailnetInbox": MessageLookupByLibrary.simpleMessage("Taildrop · 受信箱"),
+    "tailnetLogin": MessageLookupByLibrary.simpleMessage("ログイン / 再接続"),
+    "tailnetNoFiles": MessageLookupByLibrary.simpleMessage("受信ファイルはありません"),
+    "tailnetNoTargets": MessageLookupByLibrary.simpleMessage(
+      "受信可能な個人デバイスがありません。両方のデバイスで同じアカウントにログインしてください。",
+    ),
+    "tailnetOpenLogin": MessageLookupByLibrary.simpleMessage("ログインページを開く"),
+    "tailnetRuleMode": MessageLookupByLibrary.simpleMessage(
+      "プロキシと同じ VPN を使用します。有効時はルールモードが必要です。",
+    ),
+    "tailnetSave": MessageLookupByLibrary.simpleMessage("コピーを保存"),
+    "tailnetSaved": MessageLookupByLibrary.simpleMessage(
+      "保存しました。受信箱のファイルは保持されます",
+    ),
+    "tailnetSend": MessageLookupByLibrary.simpleMessage("Taildrop · 送信"),
+    "tailnetSent": MessageLookupByLibrary.simpleMessage("ファイルを送信しました"),
+    "tailnetStatus": MessageLookupByLibrary.simpleMessage("Tailscale の状態"),
+    "tailnetTitle": MessageLookupByLibrary.simpleMessage(
+      "Tailscale と Taildrop",
+    ),
     "tapToAuthorize": MessageLookupByLibrary.simpleMessage("タップして許可"),
     "tcpConcurrent": MessageLookupByLibrary.simpleMessage("TCP同時接続"),
     "testInterval": MessageLookupByLibrary.simpleMessage("テスト間隔"),

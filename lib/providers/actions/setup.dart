@@ -243,7 +243,10 @@ class SetupAction extends _$SetupAction {
   @visibleForTesting
   Future<void> updateConfig() async {
     await globalState.safeRun(() async {
-      final patchConfig = ref.read(patchClashConfigProvider);
+      var patchConfig = ref.read(patchClashConfigProvider);
+      if (system.isAndroid && Tailnet.lastSnapshot['enabled'] == true) {
+        patchConfig = patchConfig.copyWith(mode: Mode.rule);
+      }
       final shouldContinueSetup = await requestAdmin(patchConfig.tun.enable);
       if (!shouldContinueSetup) {
         await _restartCoreAfterAuthorization();
@@ -267,6 +270,9 @@ class SetupAction extends _$SetupAction {
   }
 
   void changeMode(Mode mode) {
+    if (system.isAndroid && Tailnet.lastSnapshot['enabled'] == true) {
+      mode = Mode.rule;
+    }
     ref
         .read(patchClashConfigProvider.notifier)
         .update((state) => state.copyWith(mode: mode));
@@ -380,7 +386,7 @@ class SetupAction extends _$SetupAction {
       proxyGroups: proxyGroups,
       rules: rules,
     );
-    final res = makeRealProfileTask(
+    final res = await makeRealProfileTask(
       MakeRealProfileState(
         rules: rules,
         proxies: proxies,
@@ -401,6 +407,11 @@ class SetupAction extends _$SetupAction {
         safeMode: ref.read(safeModeProvider),
       ),
     );
+    if (system.isAndroid && !ref.read(safeModeProvider)) {
+      final snapshot = await Tailnet.status();
+      final content = injectTailnet(res.yaml, snapshot);
+      return (yaml: content, md5: content.toMd5());
+    }
     return res;
   }
 

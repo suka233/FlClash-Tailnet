@@ -1,0 +1,69 @@
+name: Tailnet Android
+on:
+  push:
+    branches: [main, next]
+  pull_request:
+    branches: [main, next]
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      ref:
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          fetch-depth: 0
+      - name: Fetch pinned Mihomo source
+        run: |
+          git -c url.https://github.com/.insteadOf=git@github.com: submodule update --init --recursive
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.4'
+          cache: true
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.4'
+          cache-dependency-path: core/go.sum
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager 'platforms;android-37' 'ndk;28.2.13676358'
+      - uses: gradle/actions/setup-gradle@v6
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: plugins/rust_api/rust
+      - run: flutter pub get
+      - run: dart format --output=none --set-exit-if-changed lib test tool plugins setup.dart
+      - run: flutter analyze --no-fatal-infos
+      - name: Flutter regression tests
+        run: |
+          cp pubspec.yaml /tmp/tailnet-pubspec.yaml
+          trap 'cp /tmp/tailnet-pubspec.yaml pubspec.yaml' EXIT
+          sed -i '0,/build_assets: true/s//build_assets: false/' pubspec.yaml
+          flutter test --reporter expanded --coverage
+          dart run tool/check_coverage.dart coverage/lcov.info 75
+      - name: Android regression tests
+        run: |
+          printf 'flutter.sdk=%s\nsdk.dir=%s\n' "$FLUTTER_ROOT" "$ANDROID_HOME" > android/local.properties
+          cd android
+          ./gradlew :app:testDebugUnitTest :service:testDebugUnitTest :common:testDebugUnitTest :tailnet:testDebugUnitTest --console=plain
+      - name: Build installable ARM64 APK
+        run: |
+          build_number=$(python3 -c 'import time; print(2026000000 + int((time.time()-1767225600)//60))')
+          flutter build apk --release --target-platform android-arm64 --build-number "$build_number"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FlClash-Tailnet-arm64-${{ github.run_id }}
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30

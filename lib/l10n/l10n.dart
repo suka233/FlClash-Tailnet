@@ -3850,10 +3850,10 @@ class AppLocalizations {
     );
   }
 
-  /// `This app uses Firebase Crashlytics to collect crash information to improve stability.\nThe collected data includes device information and crash details, and contains no personally sensitive data.\nYou can turn this off in settings.`
+  /// `This prototype has no Firebase reporting configuration. Enabling Tailscale connects to your selected control server and relay servers; device identity and network metadata are shared with that server. Taildrop files are transferred over Tailscale. Node state and the received-file inbox are stored privately on this device.`
   String get dataCollectionContent {
     return Intl.message(
-      'This app uses Firebase Crashlytics to collect crash information to improve stability.\nThe collected data includes device information and crash details, and contains no personally sensitive data.\nYou can turn this off in settings.',
+      'This prototype has no Firebase reporting configuration. Enabling Tailscale connects to your selected control server and relay servers; device identity and network metadata are shared with that server. Taildrop files are transferred over Tailscale. Node state and the received-file inbox are stored privately on this device.',
       name: 'dataCollectionContent',
       desc: '',
       args: [],
@@ -6443,6 +6443,156 @@ class AppLocalizations {
     return Intl.message(
       'Last updated',
       name: 'lastUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tailscale & Taildrop`
+  String get tailnetTitle {
+    return Intl.message(
+      'Tailscale & Taildrop',
+      name: 'tailnetTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable Tailscale`
+  String get tailnetEnable {
+    return Intl.message(
+      'Enable Tailscale',
+      name: 'tailnetEnable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Uses the same VPN as the proxy. Rule mode is required while enabled.`
+  String get tailnetRuleMode {
+    return Intl.message(
+      'Uses the same VPN as the proxy. Rule mode is required while enabled.',
+      name: 'tailnetRuleMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tailscale status`
+  String get tailnetStatus {
+    return Intl.message(
+      'Tailscale status',
+      name: 'tailnetStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Control server URL`
+  String get tailnetControlUrl {
+    return Intl.message(
+      'Control server URL',
+      name: 'tailnetControlUrl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in / reconnect`
+  String get tailnetLogin {
+    return Intl.message(
+      'Sign in / reconnect',
+      name: 'tailnetLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open sign-in page`
+  String get tailnetOpenLogin {
+    return Intl.message(
+      'Open sign-in page',
+      name: 'tailnetOpenLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taildrop · send`
+  String get tailnetSend {
+    return Intl.message(
+      'Taildrop · send',
+      name: 'tailnetSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No eligible personal devices. Sign in with the same account on both devices.`
+  String get tailnetNoTargets {
+    return Intl.message(
+      'No eligible personal devices. Sign in with the same account on both devices.',
+      name: 'tailnetNoTargets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to choose and send a file`
+  String get tailnetChooseFile {
+    return Intl.message(
+      'Tap to choose and send a file',
+      name: 'tailnetChooseFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `File sent`
+  String get tailnetSent {
+    return Intl.message('File sent', name: 'tailnetSent', desc: '', args: []);
+  }
+
+  /// `Taildrop · inbox`
+  String get tailnetInbox {
+    return Intl.message(
+      'Taildrop · inbox',
+      name: 'tailnetInbox',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No received files`
+  String get tailnetNoFiles {
+    return Intl.message(
+      'No received files',
+      name: 'tailnetNoFiles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save a copy`
+  String get tailnetSave {
+    return Intl.message('Save a copy', name: 'tailnetSave', desc: '', args: []);
+  }
+
+  /// `File saved; the inbox copy is retained`
+  String get tailnetSaved {
+    return Intl.message(
+      'File saved; the inbox copy is retained',
+      name: 'tailnetSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hotspot clients: enable Allow LAN in General settings, set proxy authentication, then configure each client to use the phone hotspot address and the mixed proxy port. Android cannot transparently proxy all hotspot traffic without root.`
+  String get tailnetHotspotHelp {
+    return Intl.message(
+      'Hotspot clients: enable Allow LAN in General settings, set proxy authentication, then configure each client to use the phone hotspot address and the mixed proxy port. Android cannot transparently proxy all hotspot traffic without root.',
+      name: 'tailnetHotspotHelp',
       desc: '',
       args: [],
     );

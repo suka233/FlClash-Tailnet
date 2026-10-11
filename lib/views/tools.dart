@@ -17,6 +17,7 @@ import 'config/advanced.dart';
 import 'developer.dart';
 import 'disclaimer.dart';
 import 'theme.dart';
+import 'tailnet.dart';
 
 class ToolsView extends ConsumerStatefulWidget {
   const ToolsView({super.key});
@@ -68,6 +69,12 @@ class _ToolViewState extends ConsumerState<ToolsView> {
         const _BackupItem(),
         if (system.isDesktop) const _HotkeyItem(),
         if (system.isAndroid) const _AccessItem(),
+        if (system.isAndroid)
+          ListItem.open(
+            leading: const GlyphIcon(AppGlyphs.wifi),
+            title: Text(context.appLocalizations.tailnetTitle),
+            widget: const TailnetView(),
+          ),
         const _AdvancedConfigItem(),
         const _GeneralItem(),
       ],

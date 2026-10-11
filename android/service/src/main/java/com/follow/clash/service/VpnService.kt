@@ -11,6 +11,7 @@ import android.util.Log
 import androidx.core.content.getSystemService
 import com.follow.clash.common.AccessControlMode
 import com.follow.clash.common.GlobalState
+import com.follow.clash.common.SocketProtection
 import com.follow.clash.common.R as CommonR
 import com.follow.clash.core.Core
 import com.follow.clash.service.models.CIDR
@@ -117,6 +118,7 @@ class VpnService : SystemVpnService(), ManagedService {
     }
 
     private fun handleStart(options: VpnOptions) {
+        SocketProtection.protect = this::protect
         val fd = with(Builder()) {
             addAddressAndRoutes(options)
             addDnsServers(options)
@@ -282,6 +284,7 @@ class VpnService : SystemVpnService(), ManagedService {
             Core.stopTun()
             tunRunning = false
         }
+        SocketProtection.protect = null
     }
 
     companion object {

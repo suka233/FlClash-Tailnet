@@ -1,0 +1,5 @@
+<resources>
+    <string name="tailnet_service_title">FlClash Tailscale</string>
+    <string name="tailnet_service_active">Tailscale 已启动，可接收 Taildrop 文件</string>
+    <string name="tailnet_service_channel">Tailscale 连接</string>
+</resources>

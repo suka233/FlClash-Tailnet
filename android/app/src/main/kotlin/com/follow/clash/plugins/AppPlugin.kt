@@ -127,6 +127,7 @@ class AppPlugin : FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware 
     override fun onMethodCall(call: MethodCall, rawResult: Result) {
         val result = MainThreadResult(rawResult)
         when (call.method) {
+            "requestNotificationsPermission" -> requestNotificationPermission { result.success(it) }
             "moveTaskToBack" -> {
                 activity?.moveTaskToBack(true)
                 result.success(true)
