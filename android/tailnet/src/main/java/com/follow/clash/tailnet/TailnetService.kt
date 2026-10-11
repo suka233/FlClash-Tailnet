@@ -123,7 +123,7 @@ class TailnetService : Service() {
             mapOf("name" to it.name, "index" to it.index, "mtu" to it.mtu,
                 "addresses" to it.interfaceAddresses.mapNotNull { address -> address.address?.hostAddress?.substringBefore('%')?.let { ip -> "$ip/${address.networkPrefixLength}" } })
         }
-        val data = mapOf("default" to (physical?.let { connectivity.getLinkProperties(it)?.interfaceName } ?: ""), "interfaces" to interfaces)
+        val data = mapOf("handle" to (physical?.networkHandle ?: 0L), "default" to (physical?.let { connectivity.getLinkProperties(it)?.interfaceName } ?: ""), "interfaces" to interfaces)
         val root = TailnetRuntime.root(this)
         val temp = File(root, "network.tmp")
         temp.writeText(Gson().toJson(data))

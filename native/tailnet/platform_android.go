@@ -1,6 +1,12 @@
-//go:build android
+//go:build android && cgo
 
 package main
+
+/*
+#cgo LDFLAGS: -landroid
+#include <android/multinetwork.h>
+*/
+import "C"
 
 import (
 	"encoding/json"
@@ -103,6 +109,7 @@ func flclashInterfaces() ([]netmon.Interface, error) {
 		return nil, err
 	}
 	var state struct {
+		Handle     uint64 `json:"handle"`
 		Default    string `json:"default"`
 		Interfaces []struct {
 			Name      string   `json:"name"`
@@ -113,6 +120,11 @@ func flclashInterfaces() ([]netmon.Interface, error) {
 	}
 	if err := json.Unmarshal(b, &state); err != nil {
 		return nil, err
+	}
+	if state.Handle != 0 {
+		if result, err := C.android_setprocnetwork(C.net_handle_t(state.Handle)); result != 0 {
+			return nil, fmt.Errorf("bind Tailscale process to physical network: %w", err)
+		}
 	}
 	netmon.UpdateLastKnownDefaultRouteInterface(state.Default)
 	ret := make([]netmon.Interface, 0, len(state.Interfaces))

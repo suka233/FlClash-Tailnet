@@ -6,6 +6,10 @@ The final profile adapter prepends Tailnet address and advertised subnet rules, 
 
 A same-UID abstract Unix socket broker accepts SCM_RIGHTS descriptors from tailscaled. It binds each connection to a physical Android network and protects it through the existing VpnService. A persistent owner connection terminates the child when the Android app process dies. Network callbacks publish interface snapshots atomically and signal netmon. The backend state and received files are inside the app private directory.
 
+Physical network selection follows Android's active network, with validated Wi-Fi preferred when the active network is the VPN. The standalone Tailscale child also binds its Bionic DNS resolver to that physical network through the Android NDK process binding API; the Flutter/Mihomo parent stays unbound. This keeps control-plane DNS and sockets on the same network, including when a router supplies Fake-IP answers or the proxy VPN is already running. Changes in network capabilities refresh the binding.
+
+Sign-in requests wait for the asynchronous control-server AuthURL and open it once in the external browser. The page shows backend health warnings, a 30-second waiting timeout, and a selectable link with manual reopening if browser launch fails. Opening the settings page alone does not launch authentication. Headscale may require a server-side registration command before the new node becomes Running.
+
 Taildrop uses the official LocalAPI and stable node IDs. Sending stages only the system-picker selected file in app cache and removes the staging copy afterward. Receiving streams into an ACTION_CREATE_DOCUMENT destination; the inbox original remains. The prototype does not automatically delete incoming files.
 
 ## Upstream boundaries
