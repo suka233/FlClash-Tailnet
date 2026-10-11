@@ -57,9 +57,18 @@ jobs:
           dart run tool/check_coverage.dart coverage/lcov.info 75
       - name: Android regression tests
         run: |
-          printf 'flutter.sdk=%s\nsdk.dir=%s\n' "$FLUTTER_ROOT" "$ANDROID_HOME" > android/local.properties
+          {
+            echo "flutter.sdk=$FLUTTER_ROOT"
+            echo "sdk.dir=$ANDROID_HOME"
+          } > android/local.properties
+          wrapper="$FLUTTER_ROOT/bin/cache/artifacts/gradle_wrapper"
+          test -d "$wrapper" || flutter precache
+          cp "$wrapper/gradlew" android/gradlew
+          cp "$wrapper/gradle/wrapper/gradle-wrapper.jar" android/gradle/wrapper/gradle-wrapper.jar
+          chmod +x android/gradlew
           cd android
-          ./gradlew :app:testDebugUnitTest :service:testDebugUnitTest :common:testDebugUnitTest :tailnet:testDebugUnitTest --console=plain
+          ./gradlew :app:testDebugUnitTest :service:testDebugUnitTest :common:testDebugUnitTest :tailnet:testDebugUnitTest \
+            -Ptarget-platform=android-arm64 -x :app:compileFlutterBuildDebug -x :app:copyFlutterAssetsDebug --console=plain
       - name: Build installable ARM64 APK
         run: |
           build_number=$(python3 -c 'import time; print(2026000000 + int((time.time()-1767225600)//60))')
